@@ -32,8 +32,8 @@ if ( ! $page ) {
 update_option( 'show_on_front', 'page' );
 update_option( 'page_on_front', $page_id );
 
-sercotec_landing_seed_default_services();
+sercotec_landing_seed_default_content( true );
 
 echo "Theme activated: sercotec-landing\n";
 echo "Front page set to: Inicio (ID {$page_id})\n";
-echo "Default services seeded.\n";
+echo "Site defaults seeded (options + CPTs).\n";

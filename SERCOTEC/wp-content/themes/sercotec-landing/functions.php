@@ -7,10 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SERCOTEC_LANDING_VERSION', '1.31.1' );
+define( 'SERCOTEC_LANDING_VERSION', '1.32.0' );
 define( 'SERCOTEC_LANDING_DIR', get_template_directory() );
 define( 'SERCOTEC_LANDING_URI', get_template_directory_uri() );
 
+require_once SERCOTEC_LANDING_DIR . '/inc/seed-bootstrap.php';
 require_once SERCOTEC_LANDING_DIR . '/inc/admin-site-config-menu.php';
 require_once SERCOTEC_LANDING_DIR . '/inc/hero-settings.php';
 require_once SERCOTEC_LANDING_DIR . '/inc/cpt-about-cards.php';

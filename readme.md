@@ -45,7 +45,7 @@ Este script:
 
 - Activa el tema `sercotec-landing`
 - Crea la página **Inicio** como front page
-- Inserta servicios de ejemplo
+- Inserta el contenido por defecto desde `data/site-defaults.php` (textos, servicios, tarjetas Nosotros, testimonios, FAQ e imágenes)
 
 ## Variables de entorno
 
