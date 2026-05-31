@@ -37,15 +37,9 @@ http://localhost:8080/wp-admin/install.php
 
 ### 5. Activar el tema y configurar la página de inicio
 
-```bash
-docker compose exec wordpress php /var/www/html/wp-content/themes/sercotec-landing/setup.php
-```
-
 Este script:
 
 - Activa el tema `sercotec-landing`
-- Crea la página **Inicio** como front page
-- Inserta el contenido por defecto desde `data/site-defaults.php` (textos, servicios, tarjetas Nosotros, testimonios, FAQ e imágenes)
 
 ## Variables de entorno
 
