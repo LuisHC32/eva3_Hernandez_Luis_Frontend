@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SERCOTEC_LANDING_VERSION', '1.27.0' );
+define( 'SERCOTEC_LANDING_VERSION', '1.31.1' );
 define( 'SERCOTEC_LANDING_DIR', get_template_directory() );
 define( 'SERCOTEC_LANDING_URI', get_template_directory_uri() );
 
@@ -26,6 +26,8 @@ require_once SERCOTEC_LANDING_DIR . '/inc/contact-security.php';
 require_once SERCOTEC_LANDING_DIR . '/inc/cpt-contact-messages.php';
 require_once SERCOTEC_LANDING_DIR . '/inc/social-icon-library.php';
 require_once SERCOTEC_LANDING_DIR . '/inc/footer-settings.php';
+require_once SERCOTEC_LANDING_DIR . '/inc/rest-api.php';
+require_once SERCOTEC_LANDING_DIR . '/inc/accessibility-toolbar.php';
 
 function sercotec_landing_setup() {
 	add_theme_support( 'title-tag' );

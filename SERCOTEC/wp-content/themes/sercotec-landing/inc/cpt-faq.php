@@ -31,7 +31,7 @@ function sercotec_landing_register_faq_cpt() {
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_icon'           => 'dashicons-editor-help',
-			'menu_position'       => 24,
+			'menu_position'       => 25,
 			'capability_type'     => 'post',
 			'hierarchical'        => false,
 			'supports'            => array( 'title', 'editor', 'page-attributes' ),

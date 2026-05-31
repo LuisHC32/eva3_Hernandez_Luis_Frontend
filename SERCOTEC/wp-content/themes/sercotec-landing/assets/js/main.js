@@ -25,6 +25,150 @@
 		}, { passive: true });
 	}
 
+	initAccessibilityToolbar();
+
+	function initAccessibilityToolbar() {
+		const toolbar = document.querySelector('[data-a11y-toolbar]');
+		if (!toolbar) {
+			return;
+		}
+
+		const root = document.documentElement;
+		const panel = toolbar.querySelector('[data-a11y-panel]');
+		const toggle = toolbar.querySelector('[data-a11y-toggle]');
+		const fontDecrease = toolbar.querySelector('[data-a11y-font-decrease]');
+		const fontIncrease = toolbar.querySelector('[data-a11y-font-increase]');
+		const contrastBtn = toolbar.querySelector('[data-a11y-contrast]');
+		const grayscaleBtn = toolbar.querySelector('[data-a11y-grayscale]');
+		const resetBtn = toolbar.querySelector('[data-a11y-reset]');
+		const STORAGE_KEY = 'sercotec_a11y';
+		const MIN_FONT_SCALE = -2;
+		const MAX_FONT_SCALE = 3;
+
+		let state = {
+			fontScale: 0,
+			highContrast: false,
+			grayscale: false,
+		};
+
+		function loadState() {
+			try {
+				const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+				if (typeof saved.fontScale === 'number') {
+					state.fontScale = clampFontScale(saved.fontScale);
+				}
+				state.highContrast = Boolean(saved.highContrast);
+				state.grayscale = Boolean(saved.grayscale);
+			} catch (error) {
+				state = { fontScale: 0, highContrast: false, grayscale: false };
+			}
+		}
+
+		function clampFontScale(value) {
+			return Math.min(MAX_FONT_SCALE, Math.max(MIN_FONT_SCALE, value));
+		}
+
+		function saveState() {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+		}
+
+		function applyState() {
+			root.dataset.a11yFontScale = String(state.fontScale);
+			root.classList.toggle('a11y-high-contrast', state.highContrast);
+			root.classList.toggle('a11y-grayscale', state.grayscale);
+
+			if (contrastBtn) {
+				contrastBtn.setAttribute('aria-pressed', String(state.highContrast));
+				contrastBtn.classList.toggle('is-active', state.highContrast);
+			}
+
+			if (grayscaleBtn) {
+				grayscaleBtn.setAttribute('aria-pressed', String(state.grayscale));
+				grayscaleBtn.classList.toggle('is-active', state.grayscale);
+			}
+
+			if (fontDecrease) {
+				fontDecrease.disabled = state.fontScale <= MIN_FONT_SCALE;
+			}
+
+			if (fontIncrease) {
+				fontIncrease.disabled = state.fontScale >= MAX_FONT_SCALE;
+			}
+		}
+
+		function setPanelOpen(isOpen) {
+			if (!panel || !toggle) {
+				return;
+			}
+
+			panel.hidden = !isOpen;
+			toggle.setAttribute('aria-expanded', String(isOpen));
+			toolbar.classList.toggle('is-open', isOpen);
+		}
+
+		loadState();
+		applyState();
+
+		if (toggle && panel) {
+			toggle.addEventListener('click', () => {
+				setPanelOpen(panel.hidden);
+			});
+
+			document.addEventListener('click', (event) => {
+				if (!toolbar.contains(event.target)) {
+					setPanelOpen(false);
+				}
+			});
+
+			document.addEventListener('keydown', (event) => {
+				if (event.key === 'Escape' && toolbar.classList.contains('is-open')) {
+					setPanelOpen(false);
+					toggle.focus();
+				}
+			});
+		}
+
+		if (fontDecrease) {
+			fontDecrease.addEventListener('click', () => {
+				state.fontScale = clampFontScale(state.fontScale - 1);
+				applyState();
+				saveState();
+			});
+		}
+
+		if (fontIncrease) {
+			fontIncrease.addEventListener('click', () => {
+				state.fontScale = clampFontScale(state.fontScale + 1);
+				applyState();
+				saveState();
+			});
+		}
+
+		if (contrastBtn) {
+			contrastBtn.addEventListener('click', () => {
+				state.highContrast = !state.highContrast;
+				applyState();
+				saveState();
+			});
+		}
+
+		if (grayscaleBtn) {
+			grayscaleBtn.addEventListener('click', () => {
+				state.grayscale = !state.grayscale;
+				applyState();
+				saveState();
+			});
+		}
+
+		if (resetBtn) {
+			resetBtn.addEventListener('click', () => {
+				state = { fontScale: 0, highContrast: false, grayscale: false };
+				applyState();
+				saveState();
+			});
+		}
+	}
+
 	document.querySelectorAll('[data-carousel]').forEach((carousel) => {
 		if (carousel.hasAttribute('data-carousel-cards')) {
 			initCardsCarousel(carousel);

@@ -15,7 +15,7 @@ function sercotec_landing_contact_settings_menu(): void {
 		'sercotec-contact',
 		'sercotec_landing_contact_settings_page',
 		'dashicons-email',
-		25
+		26
 	);
 
 	add_submenu_page(

@@ -34,7 +34,7 @@ function sercotec_landing_register_service_cpt() {
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_icon'           => 'dashicons-portfolio',
-			'menu_position'       => 21,
+			'menu_position'       => 23,
 			'capability_type'     => 'post',
 			'hierarchical'        => false,
 			'supports'            => array( 'title', 'editor', 'thumbnail', 'page-attributes' ),

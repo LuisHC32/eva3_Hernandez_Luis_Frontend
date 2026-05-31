@@ -31,7 +31,7 @@ function sercotec_landing_register_testimonial_cpt() {
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_icon'           => 'dashicons-video-alt3',
-			'menu_position'       => 23,
+			'menu_position'       => 24,
 			'capability_type'     => 'post',
 			'hierarchical'        => false,
 			'supports'            => array( 'title', 'page-attributes' ),

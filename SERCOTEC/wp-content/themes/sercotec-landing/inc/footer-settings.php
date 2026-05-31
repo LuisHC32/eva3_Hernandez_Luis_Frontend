@@ -15,7 +15,7 @@ function sercotec_landing_footer_settings_menu(): void {
 		'sercotec-footer',
 		'sercotec_landing_footer_settings_page',
 		'dashicons-layout',
-		26
+		27
 	);
 }
 add_action( 'admin_menu', 'sercotec_landing_footer_settings_menu' );

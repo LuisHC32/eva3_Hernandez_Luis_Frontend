@@ -18,7 +18,7 @@ function sercotec_landing_register_site_config_menu_separators(): void {
 		'wp-menu-separator sercotec-site-config-separator sercotec-site-config-separator--start',
 	);
 
-	$menu['26.5'] = array(
+	$menu['27.5'] = array(
 		'',
 		'read',
 		'separator-sercotec-site-config-end',
